@@ -27,8 +27,10 @@
 			}
 		}else{
 			if(context[command] !== undefined) {
-				if(args !== undefined) {
-					argIsOption = (args[0] === '-') ? true : false;
+				if((args !== undefined) || (context[command].isStandalone)) {
+					if(args !== undefined) {
+						argIsOption = (args[0] === '-') ? true : false;
+					}
 					if(argIsOption) {
 						linter(context[command].options, args);
 					}else{
@@ -102,27 +104,26 @@
 			}
 		},
 		'cd': {
-			'check': function(param) {
-				
-			},
-			'params': {
-				'expects': 'valid command',
+			'run': function(params) {
+				return 'changing directory... to nowhere...';
 			}
 		},
 		'ls': {
-			'check': function(param) {
-				
+			'isStandalone': true,
+			'run': function(params) {
+				return 'pc1, pc2, pc3, pc4';
 			},
-			'params': {
-				'expects': 'valid command',
+			'options': {
+				's': function(params) {
+					// status
+					return 'you are totally fucked';
+				}
 			}
 		},
 		'curl': {
-			'check': function(param) {
-				
-			},
-			'params': {
-				'expects': 'valid command',
+			'isStandalone': true,
+			'run': function(params) {
+				return 'See You l8tr';
 			}
 		}
 	};

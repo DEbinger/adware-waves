@@ -50,16 +50,16 @@
 
   function spawnAd() {
     if(workstation.ws1Ad !== null){
-      game.add.sprite(94,79, workstation.ws1Ad.name);
+      game.add.sprite(80,60, workstation.ws1Ad.name);
     }
     if(workstation.ws2Ad !== null){
-      game.add.sprite(600,79, workstation.ws2Ad.name);
+      game.add.sprite(400,79, workstation.ws2Ad.name);
     }
     if(workstation.ws3Ad !== null){
-      game.add.sprite(94,363, workstation.ws3Ad.name);
+      game.add.sprite(80,300, workstation.ws3Ad.name);
     }
     if(workstation.ws4Ad !== null){
-      game.add.sprite(599, 363, workstation.ws4Ad.name);
+      game.add.sprite(400, 300, workstation.ws4Ad.name);
     }
   }
 
@@ -70,7 +70,7 @@
     if(ws1.Ad.kill === true){
       //ws2sprite.destroy();
     }
-    if(ws3.Ad.kil === true){
+    if(ws3.Ad.kill === true){
       //ws3sprite.destroy();
     }
     if(ws4.Ad.kill === true){
