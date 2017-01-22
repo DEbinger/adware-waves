@@ -11,6 +11,27 @@
     game.load.sprite();//workstation2
     game.load.sprite();//workstation3
     game.load.sprite();//workstation4
+
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
+    game.load.image();
   }
 
   function create() {
@@ -19,19 +40,22 @@
 
   function loadAd() {
     if(tracker.ws1Ad !== null){
-      let workOneAd = game.add.sprite(100, 100)
+      let workOneAd = game.add.sprite(100, 100, ws1Ad.name);
       //load texd
       //load
     }
     if(tracker.ws2Ad !== null){
+      let workTowAd = game.add.sprite(200,200, ws2Ad.name);
       //create workstation 2 ad
       //load text
     }
     if(tracker.ws3Ad !== null){
+      let workThreeAd = game.add.sprite(300,300, ws3Ad.name);
       //create workstation 3 ad
       //load text
     }
     if(tracker.ws4Ad !== null){
+      let workFourAd = game.add.sprite(400,400,ws4Ad.name);
       //creaete workstation 4 ad
       //load text
     }
@@ -74,6 +98,7 @@
   function endGame() {
     if(ws1.Ad.crash === true && ws2.Ad.crash === true && ws3.Ad.crash === true && ws4.Ad.crash === true){
       //load end game animation....
+    }
   }
 
   function udpate() {
