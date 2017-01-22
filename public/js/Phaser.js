@@ -19,7 +19,7 @@
 
   function loadAd() {
     if(tracker.ws1Ad !== null){
-      //create workstation 1 ad
+      let workOneAd = game.add.sprite(100, 100)
       //load texd
       //load
     }
@@ -71,12 +71,16 @@
     }
   }
 
-  function function_name(argument) {
-    // body...
+  function endGame() {
+    if(ws1.Ad.crash === true && ws2.Ad.crash === true && ws3.Ad.crash === true && ws4.Ad.crash === true){
+      //load end game animation....
   }
 
   function udpate() {
     loadAd();
+    killAd();
+    workstationcrash();
+    endGame();
   }
 
 })(window.Phaser);
