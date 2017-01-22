@@ -7,11 +7,6 @@
   const game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, GAME_CONTAINER_ID, {preload, create, update});
 
   function preload() {
-    // game.load.sprite();//workstation1
-    // game.load.sprite();//workstation2
-    // game.load.sprite();//workstation3
-    // game.load.sprite();//workstation4
-
     game.load.image('538', 'assets/538.png');
     game.load.image('WOW', 'assets/HS.png');
     game.load.image('Overwatch', 'assets/Overwatch-Origins.png');
@@ -43,6 +38,7 @@
   let wsArr = Object.keys(workstation);
   let amtWs = wsArr.length;
   let wsList = {};
+  let ranGameOverAni = false;
 
   function create() {
     adObjects = game.add.group();
@@ -77,47 +73,52 @@
     for(let i = 0; i < amtWs; i++) {
       if(workstation[wsArr[i]] !== null) {
         if(workstation[wsArr[i]].kill) {
-          let wsToKill = wsList[workstation[wsArr[i]].name];
-          wsToKill.destroy();
+          wsList[workstation[wsArr[i]].name].destroy();
+          workstation[wsArr[i]] = null;
         }
       }
     }
   }
 
   function workstationCrash() {
-    if(ws1.Ad.n === ws1.Ad.d){
-      //load ws1 crash screen
-      //set ws1 = null
-    }
-    if(ws2.Ad.n === ws2.Ad.d){
-      //load ws2 crash screen
-      //set ws2 = null
-    }
-    if(ws3.Ad.n === ws2.Ad.d){
-      //load ws3 crash screen
-      //set ws3 = null
-    }
-    if(ws4.Ad.n === ws4.Ad.d){
-      //load ws4 crash screen
-      //set ws3 = null
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].n === workstation[wsArr[i]].d) {
+          let wsToBSOD = wsList[workstation[wsArr[i]].name]; // sprite object
+          workstation[wsArr[i]].crash = true;
+          // crash screeon for wsToBSOD
+        }
+      }
     }
   }
 
   function endGame() {
-    if(ws1.Ad.crash === true && ws2.Ad.crash === true && ws3.Ad.crash === true && ws4.Ad.crash === true){
-      //load end game animation....
+    let endGame = false;
+    let amtCrash = 0;
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].crash) {
+          amtCrash++;
+        }
+      }
+    }
+    if(amtCrash === amtWs) {
+      ranGameOverAni = true;
+      gameOver();
     }
   }
 
+  function gameOver() {
+    // do game over animation here
+  }
+
   function update() {
+    endGame(); 
+    killAd();
+    // time dependent actions go in wait();
     wait(() => {
       spawnAd();
-      killAd();
     }, timePerAd);
-
-    // killAd();
-    // workstationcrash();
-    // endGame();
   }
 
 })(window.Phaser);
