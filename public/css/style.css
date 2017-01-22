@@ -2,11 +2,13 @@
 	top: 0; left: 0;
 	padding: 0; margin: 0;
 	box-sizing: border-box;
-	font-family: Verdana;
+	font-family: 'Source Code Pro';
 }
 
 html {
-	/*background-color: black;*/
+	background-color: black;
+	font-size: 15px;
+	color: white;
 }
 
 body {
@@ -17,7 +19,8 @@ body {
 }
 
 #terminal {
-	width: 80%;
+	color: black;
+	width: 500px;
 	height: 300px;
 	padding: 20px;
 	background-color: white;
@@ -26,10 +29,18 @@ body {
 }
 
 #cmd {
-	width: 80%;
+	width: 500px;
 	height: 30px;
 	font-size: 15px;
 	padding-left: 20px;
 	padding-right: 20px;
 	overflow: hidden;
+}
+
+#controlText {
+	margin-bottom: 10px;
+}
+
+#control {
+	margin: 10px;
 }

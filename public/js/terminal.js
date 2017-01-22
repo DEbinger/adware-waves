@@ -1,7 +1,7 @@
 (function terminal() {
 
 	function stdout(str) {
-		terminal.innerHTML += '\n' + str;
+		terminal.innerHTML += str + '<br>';
 		terminal.scrollTop = terminal.scrollHeight;
 	}
 
@@ -18,7 +18,6 @@
 			}
 		}
 		cmdIsOption = (command[0] === '-') ? true : false;
-		console.log('context', context);
 		if(cmdIsOption){
 			command = command.substr(1);
 			if(context[command] !== undefined) {
@@ -48,7 +47,7 @@
 		let isString, command;
 		isString = typeof stdin === 'string';
 		if(isString) {
-			stdout(`ADMIN >> ${stdin}`);
+			stdout(`<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b> ${stdin}`);
 			command = stdin.trim().split(' ')[0];
 			if(root[command] !== undefined) {
 				linter(root, stdin);
@@ -71,7 +70,10 @@
 		'man': {
 			'run': function(params) {
 				if(manual[params] !== undefined) {
-					return manual[params];
+					let html = manual[params];
+					html = html.split('\n').join('<br>');
+					html = html.split('\t').join('&emsp;');
+					return html;
 				}else{
 					return `No manual entry for "${params}"`;
 				}
@@ -80,7 +82,15 @@
 				'n': {
 					run: function(params) {
 						if(manual[params] !== undefined) {
-							return manual[params];
+							let html = "";
+							for(let i = 0; i < manual[params].length; i++) {
+								if(manual[params][i] === '\n') {
+									html += '<br>';
+								}else{
+									html += manual[params][i];
+								}
+							}
+							return html;
 						}else{
 							return `No manual entry for "${params}"`;
 						}
@@ -115,15 +125,21 @@
 	};
 
 	var terminal = document.createElement('div');
-	terminal.id = 'terminal';
-	document.body.appendChild(terminal);
-
 	var cmd = document.createElement('input');
+	var control = document.createElement('div');
+	var controlText = document.createElement('h1');
+	terminal.id = 'terminal';
 	cmd.onkeypress = enter;
 	cmd.type = 'text';
 	cmd.id = 'cmd';
-	document.body.appendChild(cmd);
+	control.id = 'control';
+	controlText.id = 'controlText';
+	controlText.innerText = 'Control Panel'
+	control.appendChild(controlText);
+	control.appendChild(terminal);
+	control.appendChild(cmd);
+	document.body.appendChild(control);
 
-	stdout('Explain rules of game');
+	stdout(`Type "man man" (manual page for the manual command) to begin`);
 
 })();

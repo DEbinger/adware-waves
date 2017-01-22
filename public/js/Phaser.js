@@ -1,7 +1,7 @@
 (Phaser => {
 
-  const GAME_WIDTH = 820;
-  const GAME_HEIGHT = 574;
+  const GAME_WIDTH = 547;
+  const GAME_HEIGHT = 383;
   const GAME_CONTAINER_ID = 'game';
 
 
@@ -44,6 +44,7 @@
     adObjects = game.add.group();
     backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'Background');
     backgroundImage.anchor.set(0.5);
+    backgroundImage.scale.set(0.66, 0.66);
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
   }
 
