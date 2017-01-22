@@ -12,22 +12,22 @@
     game.load.sprite();//workstation3
     game.load.sprite();//workstation4
 
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
+    game.load.image('538', '../assets/538.png');
+    game.load.image('WOW', '../assets/HS.png');
+    game.load.image('Overwatch', '../assets/Overwatch-Origins.png');
+    game.load.image('Amazon', '../assets/amazon.png');
+    game.load.image('Apple', '../assets/apple.png');
+    game.load.image('CW/Arrow', '../assets/arrow.png');
+    game.load.image('Drumpf', '../assets/bleh.png');
+    game.load.image('Chrome', '../assets/chrome.png');
+    game.load.image('Cialis', '../assets/cialis.png');
+    game.load.image('CW/CrazyExGirlfriend', '../assets/crazy.png');
+    game.load.image('CrownRoyal', '../assets/crown.png');
+    game.load.image('Devleague', '../assets/devleague.png');
+    game.load.image('Doritos', '../assets/dorito.png');
+    game.load.image('Geico', '../assets/geico.png');
+    game.load.image('Halo', '../assets/halo.png');
+    game.load.image('MarioKart', '../assets/mario.png');
     game.load.image();
     game.load.image();
     game.load.image();
