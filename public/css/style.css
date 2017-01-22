@@ -57,3 +57,33 @@ body {
 	outline: none;
 	border-style: none;
 }
+
+#queue{
+  white-space: nowrap;
+}
+#backlog{
+  height: 205px;
+  width: 563px;
+  background-color: #9b9b9b;
+  display: inline-block;
+  border: 24px solid #d8d8d8;
+  overflow: hidden;
+}
+#backlog > div {
+  display: inline-block;
+  text-align: center;
+  padding: 22px;
+}
+#next{
+  margin-left: 48px;
+  height: 205px;
+  width: 205px;
+  background-color: #9b9b9b;
+  border: 24px solid #d8d8d8;
+  display: inline-block;
+  overflow: hidden;
+}
+#next > img {
+  display: block;
+  margin: auto;
+}
