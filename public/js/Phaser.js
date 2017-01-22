@@ -52,10 +52,27 @@
     }
   }
 
-  function endGame() {
-    if(ws1.Ad.crash === true || ws1.Ad.crash === true || ws1.Ad.crash === true || ws1.Ad.crash === true){
-      //run end game animation
+  function workstationCrash() {
+    if(ws1.Ad.n === ws1.Ad.d){
+      //load ws1 crash screen
+      //set ws1 = null
     }
+    if(ws2.Ad.n === ws2.Ad.d){
+      //load ws2 crash screen
+      //set ws2 = null
+    }
+    if(ws3.Ad.n === ws2.Ad.d){
+      //load ws3 crash screen
+      //set ws3 = null
+    }
+    if(ws4.Ad.n === ws4.Ad.d){
+      //load ws4 crash screen
+      //set ws3 = null
+    }
+  }
+
+  function function_name(argument) {
+    // body...
   }
 
   function udpate() {
