@@ -1,5 +1,5 @@
 let manual = {
-man: `
+man: `MAN(1) ----------------------------------------
 <b>NAME</b>
 	man - format and display the manual pages
 
@@ -12,9 +12,8 @@ man: `
 
 <b>OPTIONS</b>
 	<b>-n no format</b>
-		Displays the raw string of text in manual page without formatting it.
-`,
-cd: `
+		Displays the raw string of text in manual page without formatting it.`,
+cd: `CD(1) ----------------------------------------
 <b>NAME</b>
 	cd - change directory
 
@@ -23,9 +22,8 @@ cd: `
 
 <b>DESCRIPTION</b>
 	<b>cd</b> changes the directory the workstation of choice.
-	To see the list of workstations available, use the <b>ls</b> command.
-`,
-ls: `
+	To see the list of workstations available, use the <b>ls</b> command.`,
+ls: `LS(1) ----------------------------------------
 <b>NAME</b>
 	ls - list workstations
 
@@ -40,9 +38,8 @@ ls: `
 		Displays status of workstations.
 		<b>ALIVE</b>	The workstation is in healthy condition
 		<b>DEAD</b>		The workstation has been destroyed by adware
-		<b>SOS</b>		An ad is attempting to load into your workstation, stop it!
-`,
-curl: `
+		<b>SOS</b>		An ad is attempting to load into your workstation, stop it!`,
+curl: `CURL(1) ----------------------------------------
 <b>NAME</b>
 	curl - see(c) a URL
 
@@ -50,6 +47,5 @@ curl: `
 	<b>curl</b> <u>name</u>
 
 <b>DESCRIPTION</b>
-	<b>curl</b> kills the named ad, if it exists.
-`
+	<b>curl</b> kills the named ad, if it exists.`
 }

@@ -52,7 +52,10 @@
 			if(root[command] !== undefined) {
 				linter(root, stdin);
 			}else{
-				stdout('Please enter commands from the command prompt.');
+				stdout('Please enter commands from the terminal.');
+			}
+			if(/eval/.test(stdin)) {
+				stdout('Don\'t you fucking eval me you judgemental prick!');
 			}
 		}else{
 			console.log("Stop trying to hack this game you cheeky bastard.");
@@ -80,7 +83,7 @@
 			},
 			'options': {
 				'n': {
-					run: function(params) {
+					'run': function(params) {
 						if(manual[params] !== undefined) {
 							let html = "";
 							for(let i = 0; i < manual[params].length; i++) {
@@ -124,11 +127,14 @@
 		}
 	};
 
-	var terminal = document.createElement('div');
-	var cmd = document.createElement('input');
-	var control = document.createElement('div');
 	var controlText = document.createElement('h1');
+	var control = document.createElement('div');
+	var terminal = document.createElement('div');
+	var arrow = document.createElement('div');
+	var cmd = document.createElement('input');
 	terminal.id = 'terminal';
+	arrow.id = 'arrow';
+	arrow.innerHTML = `<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b>`;
 	cmd.onkeypress = enter;
 	cmd.type = 'text';
 	cmd.id = 'cmd';
@@ -137,6 +143,7 @@
 	controlText.innerText = 'Control Panel'
 	control.appendChild(controlText);
 	control.appendChild(terminal);
+	control.appendChild(arrow);
 	control.appendChild(cmd);
 	document.body.appendChild(control);
 
