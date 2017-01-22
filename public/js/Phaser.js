@@ -1,7 +1,7 @@
 (Phaser => {
 
-  const GAME_WIDTH = 500;
-  const GAME_HEIGHT = 800;
+  const GAME_WIDTH = 820;
+  const GAME_HEIGHT = 574;
   const GAME_CONTAINER_ID = 'game';
 
 
