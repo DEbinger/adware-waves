@@ -37,26 +37,52 @@ let netflixMsg = ['What movie do you want to play in the background while you tw
 let playstationMsg = ['Live in Your World,','Play in Ours', 'It only does EVERYTHING'];
 let toyotaMsg = ['Nothing More American than buying a Toyota'];
 
-addAd('../assets/538.png','538',_538Msg);
-addAd('../assets/HS.png','WOW',wowMsg);
-addAd('../assets/Overwatch-Origins.png','Overwatch',overwatchMsg);
-addAd('../assets/amazon.png','Amazon',amazonMsg);
-addAd('../assets/apple.png','Apple',appleMsg);
-addAd('../assets/arrow.png','CW/Arrow',arrowMsg);
-addAd('../assets/bleh.png','Drumpf',nincompoopMsg);
-addAd('../assets/chrome.png','Chrome',chromeMsg);
-addAd('../assets/cialis.png','Cialis',['']);
-addAd('../assets/crazy.png','CW/CrazyExGirlfriend',gfMsg);
-addAd('../assets/crown.png','CrownRoyal',crownMsg);
-addAd('../assets/devleague.png','Devleague',devMsg);
-addAd('../assets/dorito.png','Doritos',doritosMsg);
-addAd('../assets/geico.png','Geico',geicoMsg);
-addAd('../assets/halo.png','Halo',haloMsg);
-addAd('../assets/mario.png','MarioKart',marioMsg);
-addAd('../assets/mcd.png','McDonalds',mickyDsMsg);
-addAd('../assets/netflix.png','NetflixAndChill',netflixMsg);
-addAd('../assets/ps.png','Playstation',playstationMsg);
-addAd('../assets/toyota.png','Toyota',toyotaMsg);
+let pngArray = [
+  '538.png','538',_538Msg,
+  'HS.png','WOW',wowMsg,
+  'Overwatch-Origins.png','Overwatch',overwatchMsg,
+  'amazon.png','Amazon',amazonMsg,
+  'apple.png','Apple',appleMsg,
+  'arrow.png','CW/Arrow',arrowMsg,
+  'bleh.png','Drumpf',nincompoopMsg,
+  'chrome.png','Chrome',chromeMsg,
+  'cialis.png','Cialis', cialisMsg,
+  'crazy.png','CW/CrazyExGirlfriend',gfMsg,
+  'crown.png','CrownRoyal',crownMsg,
+  'devleague.png','Devleague',devMsg,
+  'dorito.png','Doritos',doritosMsg,
+  'geico.png','Geico',geicoMsg,
+  'halo.png','Halo',haloMsg,
+  'mario.png','MarioKart',marioMsg,
+  'mcd.png','McDonalds',mickyDsMsg,
+  'netflix.png','NetflixAndChill',netflixMsg,
+  'ps.png','Playstation',playstationMsg,
+  'toyota.png','Toyota',toyotaMsg
+];
+
+for(let i = 0; i < pngArray.length; i += 3) {
+  addAd(`../assets/${pngArray[i]}`, pngArray[i+1], pngArray[i+2]);
+}
+// addAd(`../assets/${pngArray[0]}`,'538',_538Msg);
+// addAd('../assets/HS.png','WOW',wowMsg);
+// addAd('../assets/Overwatch-Origins.png','Overwatch',overwatchMsg);
+// addAd('../assets/amazon.png','Amazon',amazonMsg);
+// addAd('../assets/apple.png','Apple',appleMsg);
+// addAd('../assets/arrow.png','CW/Arrow',arrowMsg);
+// addAd('../assets/bleh.png','Drumpf',nincompoopMsg);
+// addAd('../assets/chrome.png','Chrome',chromeMsg);
+// addAd('../assets/cialis.png','Cialis',['']);
+// addAd('../assets/crazy.png','CW/CrazyExGirlfriend',gfMsg);
+// addAd('../assets/crown.png','CrownRoyal',crownMsg);
+// addAd('../assets/devleague.png','Devleague',devMsg);
+// addAd('../assets/dorito.png','Doritos',doritosMsg);
+// addAd('../assets/geico.png','Geico',geicoMsg);
+// addAd('../assets/halo.png','Halo',haloMsg);
+// addAd('../assets/mario.png','MarioKart',marioMsg);
+// addAd('../assets/mcd.png','McDonalds',mickyDsMsg);
+// addAd('../assets/netflix.png','NetflixAndChill',netflixMsg);
+// addAd('../assets/ps.png','Playstation',playstationMsg);
+// addAd('../assets/toyota.png','Toyota',toyotaMsg);
 
 
 
