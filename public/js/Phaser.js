@@ -4,7 +4,6 @@
   const GAME_HEIGHT = 383;
   const GAME_CONTAINER_ID = 'game';
 
-
   const game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, GAME_CONTAINER_ID, {preload, create, update});
 
   function preload() {
@@ -37,9 +36,14 @@
     game.load.image('Computer', 'assets/computer.png');
   }
 
-  var sprite;
+  let delay = 0;
+  let sprite;
   let adObjects;
   let backgroundImage;
+  let wsArr = Object.keys(workstation);
+  let amtWs = wsArr.length;
+  let wsList = {};
+
   function create() {
     adObjects = game.add.group();
     backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'Background');
@@ -48,33 +52,35 @@
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
   }
 
+  function wait(callback, sec) {
+    const fps = 60;
+    if(delay-- === 0) {
+      callback();
+      delay = fps * sec;
+    }
+  }
+
   function spawnAd() {
-    if(workstation.ws1Ad !== null){
-      game.add.sprite(80,60, workstation.ws1Ad.name);
-    }
-    if(workstation.ws2Ad !== null){
-      game.add.sprite(400,79, workstation.ws2Ad.name);
-    }
-    if(workstation.ws3Ad !== null){
-      game.add.sprite(80,300, workstation.ws3Ad.name);
-    }
-    if(workstation.ws4Ad !== null){
-      game.add.sprite(400, 300, workstation.ws4Ad.name);
+    let xCoord = [80, 400, 80, 400];
+    let yCoord = [60, 60, 300, 300];
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] === null) {
+        workstation[wsArr[i]] = pending.pop();
+        let addedWs = game.add.sprite(xCoord[i], yCoord[i], workstation[wsArr[i]].name);
+        wsList[workstation[wsArr[i]].name] = addedWs;
+        i = amtWs;
+      }
     }
   }
 
   function killAd() {
-    if(ws1.Ad.kill === true){
-      //ws1 sprite.destrou();
-    }
-    if(ws1.Ad.kill === true){
-      //ws2sprite.destroy();
-    }
-    if(ws3.Ad.kill === true){
-      //ws3sprite.destroy();
-    }
-    if(ws4.Ad.kill === true){
-      //ws3sprite.destroy();
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].kill) {
+          let wsToKill = wsList[workstation[wsArr[i]].name];
+          wsToKill.destroy();
+        }
+      }
     }
   }
 
@@ -104,7 +110,10 @@
   }
 
   function update() {
-    spawnAd();
+    wait(() => {
+      spawnAd();
+      killAd();
+    }, timePerAd);
 
     // killAd();
     // workstationcrash();
