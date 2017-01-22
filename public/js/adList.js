@@ -1,6 +1,5 @@
 var adList = [
 
-
 ];
 
 function addAd (path, name, loaded){

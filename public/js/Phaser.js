@@ -4,60 +4,61 @@
   const GAME_HEIGHT = 800;
   const GAME_CONTAINER_ID = 'game';
 
-  const game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, GAME_CONTAINER_ID, {preload, create, udpate});
+
+  const game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, GAME_CONTAINER_ID, {preload, create, update});
 
   function preload() {
-    game.load.sprite();//workstation1
-    game.load.sprite();//workstation2
-    game.load.sprite();//workstation3
-    game.load.sprite();//workstation4
+    // game.load.sprite();//workstation1
+    // game.load.sprite();//workstation2
+    // game.load.sprite();//workstation3
+    // game.load.sprite();//workstation4
 
-    game.load.image('538', '../assets/538.png');
-    game.load.image('WOW', '../assets/HS.png');
-    game.load.image('Overwatch', '../assets/Overwatch-Origins.png');
-    game.load.image('Amazon', '../assets/amazon.png');
-    game.load.image('Apple', '../assets/apple.png');
-    game.load.image('CW/Arrow', '../assets/arrow.png');
-    game.load.image('Drumpf', '../assets/bleh.png');
-    game.load.image('Chrome', '../assets/chrome.png');
-    game.load.image('Cialis', '../assets/cialis.png');
-    game.load.image('CW/CrazyExGirlfriend', '../assets/crazy.png');
-    game.load.image('CrownRoyal', '../assets/crown.png');
-    game.load.image('Devleague', '../assets/devleague.png');
-    game.load.image('Doritos', '../assets/dorito.png');
-    game.load.image('Geico', '../assets/geico.png');
-    game.load.image('Halo', '../assets/halo.png');
-    game.load.image('MarioKart', '../assets/mario.png');
-    game.load.image();
-    game.load.image();
-    game.load.image();
-    game.load.image();
+    game.load.image('538', 'assets/538.png');
+    game.load.image('WOW', 'assets/HS.png');
+    game.load.image('Overwatch', 'assets/Overwatch-Origins.png');
+    game.load.image('Amazon', 'assets/amazon.png');
+    game.load.image('Apple', 'assets/apple.png');
+    game.load.image('CW/Arrow', 'assets/arrow.png');
+    game.load.image('Drumpf', 'assets/bleh.png');
+    game.load.image('Chrome', 'assets/chrome.png');
+    game.load.image('Cialis', 'assets/cialis.png');
+    game.load.image('CW/CrazyExGirlfriend', 'assets/crazy.png');
+    game.load.image('CrownRoyal', 'assets/crown.png');
+    game.load.image('Devleague', 'assets/devleague.png');
+    game.load.image('Doritos', 'assets/dorito.png');
+    game.load.image('Geico', 'assets/geico.png');
+    game.load.image('Halo', 'assets/halo.png');
+    game.load.image('MarioKart', 'assets/mario.png');
+    game.load.image("McDonalds", 'assets/mcd.png');
+    game.load.image('NetflixAndChill', 'assets/netflix.png');
+    game.load.image('Playstation', 'assets/ps.png');
+    game.load.image('Toyota', 'assets/toyota.png');
+    game.load.image('Background', 'assets/background.png');
+    game.load.image('Computer', 'assets/computer.png');
   }
 
+  var sprite;
+  let adObjects;
+  let backgroundImage;
   function create() {
-
+    adObjects = game.add.group();
+    backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'Background');
+    backgroundImage.anchor.set(0.5);
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
   }
 
-  function loadAd() {
-    if(tracker.ws1Ad !== null){
-      let workOneAd = game.add.sprite(100, 100, ws1Ad.name);
-      //load texd
-      //load
+  function spawnAd() {
+    if(workstation.ws1Ad !== null){
+      game.add.sprite(45,250, workstation.ws1Ad.name);
     }
-    if(tracker.ws2Ad !== null){
-      let workTowAd = game.add.sprite(200,200, ws2Ad.name);
-      //create workstation 2 ad
-      //load text
+    if(workstation.ws2Ad !== null){
+      game.add.sprite(350,250, workstation.ws2Ad.name);
     }
-    if(tracker.ws3Ad !== null){
-      let workThreeAd = game.add.sprite(300,300, ws3Ad.name);
-      //create workstation 3 ad
-      //load text
+    if(workstation.ws3Ad !== null){
+      game.add.sprite(45,535, workstation.ws3Ad.name);
     }
-    if(tracker.ws4Ad !== null){
-      let workFourAd = game.add.sprite(400,400,ws4Ad.name);
-      //creaete workstation 4 ad
-      //load text
+    if(workstation.ws4Ad !== null){
+      game.add.sprite(350,535, workstation.ws4Ad.name);
     }
   }
 
@@ -101,11 +102,12 @@
     }
   }
 
-  function udpate() {
-    loadAd();
-    killAd();
-    workstationcrash();
-    endGame();
+  function update() {
+    spawnAd();
+
+    // killAd();
+    // workstationcrash();
+    // endGame();
   }
 
 })(window.Phaser);
