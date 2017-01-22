@@ -114,9 +114,27 @@
 				return 'pc1, pc2, pc3, pc4';
 			},
 			'options': {
-				's': function(params) {
-					// status
-					return 'you are totally fucked';
+				's': {
+					'run': function(params) {
+						let returnHTML = "<b>Status of PCs</b><br>";
+						let statusArr = [];
+						for(key in workstation) {
+							if(workstation[key] === null) {
+								statusArr.push("<b>ALIVE</b>");
+							}else{
+								if(workstation[key].crash) {
+									statusArr.push("<b>DEAD</b>");
+								}else{
+									statusArr.push("<b>SOS</b>");
+								}
+							}
+						}
+						returnHTML += `PC1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
+						returnHTML += `PC2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
+						returnHTML += `PC3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
+						returnHTML += `PC4&emsp;&emsp;&emsp;${statusArr[3]}<br>`;
+						return returnHTML;
+					}
 				}
 			}
 		},
