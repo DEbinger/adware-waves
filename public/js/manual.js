@@ -48,4 +48,4 @@ curl: `CURL(1) ----------------------------------------
 
 <b>DESCRIPTION</b>
 	<b>curl</b> kills the named ad, if it exists.`
-}
+};

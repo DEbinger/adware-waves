@@ -29,6 +29,7 @@
     game.load.image('Toyota', 'assets/toyota.png');
     game.load.image('Background', 'assets/background.png');
     game.load.image('Computer', 'assets/computer.png');
+    game.load.image('BSOD', 'assets/bsod.png');
   }
 
   let delay = 0;
@@ -89,7 +90,11 @@
         if(workstation[wsArr[i]].n === workstation[wsArr[i]].d) {
           let wsToBSOD = wsList[workstation[wsArr[i]].name]; // sprite object
           workstation[wsArr[i]].crash = true;
-          // crash screeon for wsToBSOD
+          backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'BSOD');
+          backgroundImage.anchor.set(0.5);
+          backgroundImage.scale.set(0.66, 0.66);
+          game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
+        // crash screeon for wsToBSOD
         }
       }
     }
