@@ -173,7 +173,7 @@
 					'run': function(params) {
 						let returnHTML = "<b>Status of PCs</b><br>";
 						let statusArr = [];
-						for(key in workstation) {
+						for(let key in workstation) {
 							if(workstation[key] === null) {
 								statusArr.push("<b>ALIVE</b>");
 							}else{

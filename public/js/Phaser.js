@@ -29,6 +29,7 @@
     game.load.image('Toyota', 'assets/toyota.png');
     game.load.image('Background', 'assets/background.png');
     game.load.image('Computer', 'assets/computer.png');
+    game.load.image('BSOD', 'assets/bsod.png');
   }
 
   let delay = 0;
@@ -57,8 +58,8 @@
   }
 
   function spawnAd() {
-    let xCoord = [80, 400, 80, 400];
-    let yCoord = [60, 60, 300, 300];
+    let xCoord = [70, 402, 70, 402];
+    let yCoord = [60, 60, 248, 248];
     for(let i = 0; i < amtWs; i++) {
       if(workstation[wsArr[i]] === null) {
         workstation[wsArr[i]] = pending.pop();
@@ -66,6 +67,7 @@
         wsList[workstation[wsArr[i]].name] = addedWs;
         i = amtWs;
         addedWs.alpha = 0;
+        addedWs.scale.set(0.6, 0.6);
         timeInMilSecs = timePerAd * 1000;
         game.add.tween(addedWs).to( { alpha: 1 }, timeInMilSecs, Phaser.Easing.Linear.None, true, 0, 1000, true);
       }
@@ -89,7 +91,11 @@
         if(workstation[wsArr[i]].n === workstation[wsArr[i]].d) {
           let wsToBSOD = wsList[workstation[wsArr[i]].name]; // sprite object
           workstation[wsArr[i]].crash = true;
-          // crash screeon for wsToBSOD
+          backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'BSOD');
+          backgroundImage.anchor.set(0.5);
+          backgroundImage.scale.set(0.66, 0.66);
+          game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
+        // crash screeon for wsToBSOD
         }
       }
     }
@@ -118,11 +124,10 @@
   function update() {
     endGame();
     killAd();
-    spawnAd();
     // time dependent actions go in wait();
-    //wait(() => {
-     // spawnAd(); //added above
-    //}, timePerAd);
+    wait(() => {
+     spawnAd(); //added above
+    }, timePerAd);
   }
 
 })(window.Phaser);
