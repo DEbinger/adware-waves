@@ -38,7 +38,7 @@
 					}
 				}else{
 					stdout(`Type "man ${command}" to see usage`);
-				}	
+				}
 			}else{
 				return `"${command}" is not a valid command`;
 			}
@@ -159,7 +159,7 @@
 	cmd.id = 'cmd';
 	control.id = 'control';
 	controlText.id = 'controlText';
-	controlText.innerText = 'Control Panel'
+	controlText.innerText = 'Control Panel';
 	control.appendChild(controlText);
 	control.appendChild(terminal);
 	control.appendChild(arrow);
