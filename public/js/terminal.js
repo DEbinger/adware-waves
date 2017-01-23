@@ -104,10 +104,10 @@
 	}
 
 	let ADMIN = new dll("ADMIN");
-	let pc1 = new dll("pc1", ADMIN);
-	let pc2 = new dll("pc2", ADMIN);
-	let pc3 = new dll("pc3", ADMIN);
-	let pc4 = new dll("pc4", ADMIN);
+	let cp1 = new dll("cp1", ADMIN);
+	let cp2 = new dll("cp2", ADMIN);
+	let cp3 = new dll("cp3", ADMIN);
+	let cp4 = new dll("cp4", ADMIN);
 	let currDir = dir => { 
 		if(dir !== undefined) {
 			if(dir === '..') {
@@ -166,7 +166,7 @@
 		'ls': {
 			'isStandalone': true,
 			'run': function(params) {
-				return 'pc1 pc2 pc3 pc4';
+				return 'cp1 cp2 cp3 cp4';
 			},
 			'options': {
 				's': {
@@ -184,10 +184,10 @@
 								}
 							}
 						}
-						returnHTML += `pc1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
-						returnHTML += `pc2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
-						returnHTML += `pc3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
-						returnHTML += `pc4&emsp;&emsp;&emsp;${statusArr[3]}`;
+						returnHTML += `cp1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
+						returnHTML += `cp2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
+						returnHTML += `cp3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
+						returnHTML += `cp4&emsp;&emsp;&emsp;${statusArr[3]}`;
 						return returnHTML;
 					}
 				}
@@ -198,36 +198,36 @@
 			'run': function(params) {
 				let atLoc = printWorkingDir().name;
 				switch(params) {
-					case 'pc1':
-						if(atLoc === 'pc1') {
+					case 'cp1':
+						if(atLoc === 'cp1') {
 							workstation.ws1Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
-							return `Please cd to pc1 to curl ads`;
+							return `Please cd to cp1 to curl ads`;
 						}
 						break;
-					case 'pc2':
-						if(atLoc === 'pc2') {
+					case 'cp2':
+						if(atLoc === 'cp2') {
 							workstation.ws1Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
-							return `Please cd to pc2 to curl ads`;
+							return `Please cd to cp2 to curl ads`;
 						}
 						break;
-					case 'pc3':
-						if(atLoc === 'pc3') {
+					case 'cp3':
+						if(atLoc === 'cp3') {
 							workstation.ws1Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
-							return `Please cd to pc3 to curl ads`;
+							return `Please cd to cp3 to curl ads`;
 						}
 						break;
-					case 'pc4':
-						if(atLoc === 'pc4') {
+					case 'cp4':
+						if(atLoc === 'cp4') {
 							workstation.ws1Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
-							return `Please cd to pc4 to curl ads`;
+							return `Please cd to cp4 to curl ads`;
 						}
 						break;
 					default:
@@ -238,7 +238,7 @@
 		'pwd': {
 			'isStandalone': true,
 			'run': function() {
-				return printWorkingDir();
+				return printWorkingDir().name;
 			}
 		}
 	};
@@ -263,6 +263,6 @@
 	control.appendChild(cmd);
 	document.body.appendChild(control);
 
-	stdout(`Type "man man" (manual page for the manual command) to begin`);
+	stdout(`<b>W</b>hy <b>A</b>re <b>A</b>ds <b>V</b>irtually <b>E</b>verywhere?!<br>To kill ad, use command: <br>&emsp;<u>cd *name-of-cp*</u><br>&emsp;<u>curl *name-of-cp*</u><br>i.e. To kill ad on computer 1 from <u>ADMIN</u>:<br>&emsp;<u>cd cp1</u><br>&emsp;<u>curl cp1</u><br>Type "man man" (manual page for the manual command) for more information.`);
 
 })();

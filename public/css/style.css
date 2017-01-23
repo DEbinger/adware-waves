@@ -100,6 +100,7 @@ body {
 
 #arrow {
   width: 100px;
+  height: 30px;
 	color: black;
 	display: flex;
 	justify-content: center;
@@ -123,24 +124,25 @@ body {
   white-space: nowrap;
 }
 #backlog{
-  height: 205px;
-  width: 563px;
+  height: 140px;
+  width: 400px;
   background-color: #9b9b9b;
   display: inline-block;
-  border: 24px solid #d8d8d8;
+  border: 5px solid #d8d8d8;
   overflow: hidden;
+  margin: 0;
 }
 #backlog > div {
   display: inline-block;
   text-align: center;
-  padding: 22px;
+  padding: 14px;
 }
 #next{
-  margin-left: 48px;
-  height: 205px;
-  width: 205px;
+  height: 140px;
+  width: 140px;
   background-color: #9b9b9b;
-  border: 24px solid #d8d8d8;
+  border: 5px solid #d8d8d8;
+  margin: 0;
   display: inline-block;
   overflow: hidden;
 }
