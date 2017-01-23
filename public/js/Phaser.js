@@ -58,8 +58,8 @@
   }
 
   function spawnAd() {
-    let xCoord = [80, 400, 80, 400];
-    let yCoord = [60, 60, 300, 300];
+    let xCoord = [70, 402, 70, 402];
+    let yCoord = [60, 60, 248, 248];
     for(let i = 0; i < amtWs; i++) {
       if(workstation[wsArr[i]] === null) {
         workstation[wsArr[i]] = pending.pop();
@@ -67,6 +67,7 @@
         wsList[workstation[wsArr[i]].name] = addedWs;
         i = amtWs;
         addedWs.alpha = 0;
+        addedWs.scale.set(0.6, 0.6);
         timeInMilSecs = timePerAd * 1000;
         game.add.tween(addedWs).to( { alpha: 1 }, timeInMilSecs, Phaser.Easing.Linear.None, true, 0, 1000, true);
       }
@@ -123,11 +124,10 @@
   function update() {
     endGame();
     killAd();
-    spawnAd();
     // time dependent actions go in wait();
-    //wait(() => {
-     // spawnAd(); //added above
-    //}, timePerAd);
+    wait(() => {
+     spawnAd(); //added above
+    }, timePerAd);
   }
 
 })(window.Phaser);
