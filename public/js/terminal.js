@@ -1,7 +1,7 @@
 (function terminal() {
 
 	function stdout(str) {
-		terminal.innerHTML += '\n' + str;
+		terminal.innerHTML += str + '<br>';
 		terminal.scrollTop = terminal.scrollHeight;
 	}
 
@@ -18,7 +18,6 @@
 			}
 		}
 		cmdIsOption = (command[0] === '-') ? true : false;
-		console.log('context', context);
 		if(cmdIsOption){
 			command = command.substr(1);
 			if(context[command] !== undefined) {
@@ -28,8 +27,10 @@
 			}
 		}else{
 			if(context[command] !== undefined) {
-				if(args !== undefined) {
-					argIsOption = (args[0] === '-') ? true : false;
+				if((args !== undefined) || (context[command].isStandalone)) {
+					if(args !== undefined) {
+						argIsOption = (args[0] === '-') ? true : false;
+					}
 					if(argIsOption) {
 						linter(context[command].options, args);
 					}else{
@@ -48,12 +49,15 @@
 		let isString, command;
 		isString = typeof stdin === 'string';
 		if(isString) {
-			stdout(`ADMIN >> ${stdin}`);
+			stdout(`<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b> ${stdin}`);
 			command = stdin.trim().split(' ')[0];
 			if(root[command] !== undefined) {
 				linter(root, stdin);
 			}else{
-				stdout('Please enter commands from the command prompt.');
+				stdout('Please enter commands from the terminal.');
+			}
+			if(/eval/.test(stdin)) {
+				stdout('Don\'t you fucking eval me you judgemental prick!');
 			}
 		}else{
 			console.log("Stop trying to hack this game you cheeky bastard.");
@@ -71,16 +75,27 @@
 		'man': {
 			'run': function(params) {
 				if(manual[params] !== undefined) {
-					return manual[params];
+					let html = manual[params];
+					html = html.split('\n').join('<br>');
+					html = html.split('\t').join('&emsp;');
+					return html;
 				}else{
 					return `No manual entry for "${params}"`;
 				}
 			},
 			'options': {
 				'n': {
-					run: function(params) {
+					'run': function(params) {
 						if(manual[params] !== undefined) {
-							return manual[params];
+							let html = "";
+							for(let i = 0; i < manual[params].length; i++) {
+								if(manual[params][i] === '\n') {
+									html += '<br>';
+								}else{
+									html += manual[params][i];
+								}
+							}
+							return html;
 						}else{
 							return `No manual entry for "${params}"`;
 						}
@@ -89,41 +104,68 @@
 			}
 		},
 		'cd': {
-			'check': function(param) {
-				
-			},
-			'params': {
-				'expects': 'valid command',
+			'run': function(params) {
+				return 'changing directory... to nowhere...';
 			}
 		},
 		'ls': {
-			'check': function(param) {
-				
+			'isStandalone': true,
+			'run': function(params) {
+				return 'pc1, pc2, pc3, pc4';
 			},
-			'params': {
-				'expects': 'valid command',
+			'options': {
+				's': {
+					'run': function(params) {
+						let returnHTML = "<b>Status of PCs</b><br>";
+						let statusArr = [];
+						for(key in workstation) {
+							if(workstation[key] === null) {
+								statusArr.push("<b>ALIVE</b>");
+							}else{
+								if(workstation[key].crash) {
+									statusArr.push("<b>DEAD</b>");
+								}else{
+									statusArr.push("<b>SOS</b>");
+								}
+							}
+						}
+						returnHTML += `PC1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
+						returnHTML += `PC2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
+						returnHTML += `PC3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
+						returnHTML += `PC4&emsp;&emsp;&emsp;${statusArr[3]}<br>`;
+						return returnHTML;
+					}
+				}
 			}
 		},
 		'curl': {
-			'check': function(param) {
-				
-			},
-			'params': {
-				'expects': 'valid command',
+			'isStandalone': true,
+			'run': function(params) {
+				return 'See You l8tr';
 			}
 		}
 	};
 
+	var controlText = document.createElement('h1');
+	var control = document.createElement('div');
 	var terminal = document.createElement('div');
-	terminal.id = 'terminal';
-	document.body.appendChild(terminal);
-
+	var arrow = document.createElement('div');
 	var cmd = document.createElement('input');
+	terminal.id = 'terminal';
+	arrow.id = 'arrow';
+	arrow.innerHTML = `<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b>`;
 	cmd.onkeypress = enter;
 	cmd.type = 'text';
 	cmd.id = 'cmd';
-	document.body.appendChild(cmd);
+	control.id = 'control';
+	controlText.id = 'controlText';
+	controlText.innerText = 'Control Panel'
+	control.appendChild(controlText);
+	control.appendChild(terminal);
+	control.appendChild(arrow);
+	control.appendChild(cmd);
+	document.body.appendChild(control);
 
-	stdout('Explain rules of game');
+	stdout(`Type "man man" (manual page for the manual command) to begin`);
 
 })();

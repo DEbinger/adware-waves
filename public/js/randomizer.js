@@ -1,7 +1,7 @@
-
-
+var level = 50; // leave it at 50 for now to make things go faster
 var pending = [];
-
+var numOfAd = 5 + 5 * level;
+var timePerAd;
 var workstation = {
   ws1Ad: null,
   ws2Ad: null,
@@ -9,27 +9,13 @@ var workstation = {
   ws4Ad: null
 };
 
-function randomAd() {
- let ad = adList[Math.floor(Math.random()*adList.length)];
- pending.push(ad);
- return ad;
+for(let i = 0; i < numOfAd; i++) {
+  pending.push(adList[Math.floor(Math.random()*adList.length)]);
 }
 
-for(var i = 0; i < 20; i++){
-  randomAd();
+function calcTimePerAd() {
+  timePerAd = 300 / numOfAd;
+  timePerAd = Math.floor(timePerAd);
 }
 
-var sendAdToPhaser = function (obj) {
-    var keys = Object.keys(obj);
-    var prop = keys[Math.floor(Math.random() * keys.length)];
-    if(obj[prop] === null){
-      obj[prop] = randomAd();
-    } else {
-      return false;
-    }
-};
-
-
-setInterval(function(){
-  sendAdToPhaser(workstation);
-}, 1000);
+calcTimePerAd();

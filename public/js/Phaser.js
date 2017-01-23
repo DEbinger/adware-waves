@@ -1,18 +1,12 @@
 (Phaser => {
 
-  const GAME_WIDTH = 820;
-  const GAME_HEIGHT = 574;
+  const GAME_WIDTH = 547;
+  const GAME_HEIGHT = 383;
   const GAME_CONTAINER_ID = 'game';
-
 
   const game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, GAME_CONTAINER_ID, {preload, create, update});
 
   function preload() {
-    // game.load.sprite();//workstation1
-    // game.load.sprite();//workstation2
-    // game.load.sprite();//workstation3
-    // game.load.sprite();//workstation4
-
     game.load.image('538', 'assets/538.png');
     game.load.image('WOW', 'assets/HS.png');
     game.load.image('Overwatch', 'assets/Overwatch-Origins.png');
@@ -37,77 +31,94 @@
     game.load.image('Computer', 'assets/computer.png');
   }
 
-  var sprite;
+  let delay = 0;
+  let sprite;
   let adObjects;
   let backgroundImage;
+  let wsArr = Object.keys(workstation);
+  let amtWs = wsArr.length;
+  let wsList = {};
+  let ranGameOverAni = false;
+
   function create() {
     adObjects = game.add.group();
     backgroundImage = game.add.sprite(game.world.centerX, game.world.centerY, 'Background');
     backgroundImage.anchor.set(0.5);
+    backgroundImage.scale.set(0.66, 0.66);
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
   }
 
+  function wait(callback, sec) {
+    const fps = 60;
+    if(delay-- === 0) {
+      callback();
+      delay = fps * sec;
+    }
+  }
+
   function spawnAd() {
-    if(workstation.ws1Ad !== null){
-      game.add.sprite(94,79, workstation.ws1Ad.name);
-    }
-    if(workstation.ws2Ad !== null){
-      game.add.sprite(600,79, workstation.ws2Ad.name);
-    }
-    if(workstation.ws3Ad !== null){
-      game.add.sprite(94,363, workstation.ws3Ad.name);
-    }
-    if(workstation.ws4Ad !== null){
-      game.add.sprite(599, 363, workstation.ws4Ad.name);
+    let xCoord = [80, 400, 80, 400];
+    let yCoord = [60, 60, 300, 300];
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] === null) {
+        workstation[wsArr[i]] = pending.pop();
+        let addedWs = game.add.sprite(xCoord[i], yCoord[i], workstation[wsArr[i]].name);
+        wsList[workstation[wsArr[i]].name] = addedWs;
+        i = amtWs;
+      }
     }
   }
 
   function killAd() {
-    if(ws1.Ad.kill === true){
-      //ws1 sprite.destrou();
-    }
-    if(ws1.Ad.kill === true){
-      //ws2sprite.destroy();
-    }
-    if(ws3.Ad.kil === true){
-      //ws3sprite.destroy();
-    }
-    if(ws4.Ad.kill === true){
-      //ws3sprite.destroy();
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].kill) {
+          wsList[workstation[wsArr[i]].name].destroy();
+          workstation[wsArr[i]] = null;
+        }
+      }
     }
   }
 
   function workstationCrash() {
-    if(ws1.Ad.n === ws1.Ad.d){
-      //load ws1 crash screen
-      //set ws1 = null
-    }
-    if(ws2.Ad.n === ws2.Ad.d){
-      //load ws2 crash screen
-      //set ws2 = null
-    }
-    if(ws3.Ad.n === ws2.Ad.d){
-      //load ws3 crash screen
-      //set ws3 = null
-    }
-    if(ws4.Ad.n === ws4.Ad.d){
-      //load ws4 crash screen
-      //set ws3 = null
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].n === workstation[wsArr[i]].d) {
+          let wsToBSOD = wsList[workstation[wsArr[i]].name]; // sprite object
+          workstation[wsArr[i]].crash = true;
+          // crash screeon for wsToBSOD
+        }
+      }
     }
   }
 
   function endGame() {
-    if(ws1.Ad.crash === true && ws2.Ad.crash === true && ws3.Ad.crash === true && ws4.Ad.crash === true){
-      //load end game animation....
+    let endGame = false;
+    let amtCrash = 0;
+    for(let i = 0; i < amtWs; i++) {
+      if(workstation[wsArr[i]] !== null) {
+        if(workstation[wsArr[i]].crash) {
+          amtCrash++;
+        }
+      }
+    }
+    if(amtCrash === amtWs) {
+      ranGameOverAni = true;
+      gameOver();
     }
   }
 
-  function update() {
-    spawnAd();
+  function gameOver() {
+    // do game over animation here
+  }
 
-    // killAd();
-    // workstationcrash();
-    // endGame();
+  function update() {
+    endGame(); 
+    killAd();
+    // time dependent actions go in wait();
+    wait(() => {
+      spawnAd();
+    }, timePerAd);
   }
 
 })(window.Phaser);

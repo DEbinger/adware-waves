@@ -2,11 +2,13 @@
 	/*top: 0; left: 0;*/
 	padding: 0; margin: 0;
 	box-sizing: border-box;
-	font-family: Verdana;
+	font-family: 'Source Code Pro';
 }
 
 html {
-	/*background-color: black;*/
+	background-color: black;
+	font-size: 15px;
+	color: white;
 }
 
 body {
@@ -79,8 +81,20 @@ body {
   position: absolute;
 }
 
+#controlText {
+	margin-bottom: 10px;
+}
+
+#control {
+	width: 500px;
+	margin: 10px;
+	display: flex;
+	flex-flow: row wrap;
+}
+
 #terminal {
-	width: 80%;
+	color: black;
+	width: 500px;
 	height: 300px;
 	padding: 20px;
 	background-color: white;
@@ -88,13 +102,23 @@ body {
 	overflow-wrap: break-word;
 }
 
+#arrow {
+	color: black;
+	width: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+}
+
 #cmd {
-	width: 80%;
+	width: 400px;
 	height: 30px;
 	font-size: 15px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-right: 15px;
 	overflow: hidden;
+	outline: none;
+	border-style: none;
 }
 
 #queue{
