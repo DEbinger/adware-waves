@@ -78,6 +78,7 @@ body {
 }
 
 #controlText {
+  margin-top: 20px;
 	margin-bottom: 10px;
 }
 
@@ -149,14 +150,13 @@ body {
 #next > img {
   display: block;
   margin: auto;
-<<<<<<< HEAD
 }
 #container {
   height: 400px;
   position: relative;
   overflow: hidden;
   background: #333;
-  width: 810px;
+  width: 1000px;
   margin: auto;
 }
 
