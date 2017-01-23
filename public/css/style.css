@@ -15,6 +15,66 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-flow: row wrap;
+  position: relative;
+}
+#container {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: #333;
+  width: 810px;
+  margin: auto;
+}
+
+#radar {
+  display: block;
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+}
+
+.waves {
+  border-radius: 50%;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  position: absolute;
+  right: 0px;
+  animation: wave 5s linear infinite;
+}
+@keyframes wave {
+  0% {
+    top: -25px;
+    right: -25px;
+    width: 1%;
+    height: 1%;
+  }
+  100% {
+    top: -700px;
+    right: -700px;
+    width: 1500px;
+    height: 1500px;
+  }
+}
+.waves:before {
+  content: ' ';
+  display: block;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  border-radius: 50%;
+  bottom: 250px;
+  left: 250px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.waves:after {
+  content: ' ';
+  display: block;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  border-radius: 50%;
+  bottom: 500px;
+  left: 500px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
 #controlText {
@@ -87,6 +147,7 @@ body {
 #next > img {
   display: block;
   margin: auto;
+<<<<<<< HEAD
 }
 #container {
   height: 400px;
