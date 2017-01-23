@@ -49,7 +49,7 @@
 		let isString, command;
 		isString = typeof stdin === 'string';
 		if(isString) {
-			stdout(`<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b> ${stdin}`);
+			stdout(`${currDir()}${stdin}`);
 			command = stdin.trim().split(' ')[0];
 			if(root[command] !== undefined) {
 				linter(root, stdin);
@@ -70,7 +70,62 @@
 			this.value = "";
 		}
 	}
+	function printWorkingDir() {
+		let currDir = ADMIN;
+		function deepSearch(query) {
+			query.child.forEach(child => {
+				if(child.here) {
+					currDir = child;
+				}
+				if(child.child.length > 0) {
+					child.child.forEach(childchild => {
+						deepSearch(childchild);
+					});
+				}
+			});
+			return currDir;
+		}
+		return deepSearch(currDir);
+	}
 
+	class dll {
+		constructor(name, parent) {
+			this.name = name;
+			this.here = (parent === undefined) ? true : false;
+			this.child = [];
+			this.parent = parent || null;
+			if(parent !== undefined) {
+				parent.addChild(this);
+			}
+		}
+		addChild(child) {
+			this.child.push(child);
+		}
+	}
+
+	let ADMIN = new dll("ADMIN");
+	let pc1 = new dll("pc1", ADMIN);
+	let pc2 = new dll("pc2", ADMIN);
+	let pc3 = new dll("pc3", ADMIN);
+	let pc4 = new dll("pc4", ADMIN);
+	let currDir = dir => { 
+		if(dir !== undefined) {
+			if(dir === '..') {
+				printWorkingDir().here = false;
+				ADMIN.here = true;
+				arrow.innerHTML = currDir();
+			}else{
+				printWorkingDir().child.forEach(child => {
+					if(child.name === dir) {
+						printWorkingDir().here = false;
+						child.here = true;
+						arrow.innerHTML = currDir();
+					}
+				});
+			}
+		}
+		return `<b><span style='color: magenta'>${printWorkingDir().name}</span> <span style='color: cyan'>>> </span></b>`;
+	};
 	let root = {
 		'man': {
 			'run': function(params) {
@@ -105,13 +160,13 @@
 		},
 		'cd': {
 			'run': function(params) {
-				return 'changing directory... to nowhere...';
+				return currDir(params);
 			}
 		},
 		'ls': {
 			'isStandalone': true,
 			'run': function(params) {
-				return 'pc1, pc2, pc3, pc4';
+				return 'pc1 pc2 pc3 pc4';
 			},
 			'options': {
 				's': {
@@ -129,10 +184,10 @@
 								}
 							}
 						}
-						returnHTML += `PC1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
-						returnHTML += `PC2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
-						returnHTML += `PC3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
-						returnHTML += `PC4&emsp;&emsp;&emsp;${statusArr[3]}<br>`;
+						returnHTML += `pc1&emsp;&emsp;&emsp;${statusArr[0]}<br>`;
+						returnHTML += `pc2&emsp;&emsp;&emsp;${statusArr[1]}<br>`;
+						returnHTML += `pc3&emsp;&emsp;&emsp;${statusArr[2]}<br>`;
+						returnHTML += `pc4&emsp;&emsp;&emsp;${statusArr[3]}`;
 						return returnHTML;
 					}
 				}
@@ -141,7 +196,49 @@
 		'curl': {
 			'isStandalone': true,
 			'run': function(params) {
-				return 'See You l8tr';
+				let atLoc = printWorkingDir().name;
+				switch(params) {
+					case 'pc1':
+						if(atLoc === 'pc1') {
+							workstation.ws1Ad.kill = true;
+							return `Successfully curled away ad from ${params}`;
+						}else{
+							return `Please cd to pc1 to curl ads`;
+						}
+						break;
+					case 'pc2':
+						if(atLoc === 'pc2') {
+							workstation.ws1Ad.kill = true;
+							return `Successfully curled away ad from ${params}`;
+						}else{
+							return `Please cd to pc2 to curl ads`;
+						}
+						break;
+					case 'pc3':
+						if(atLoc === 'pc3') {
+							workstation.ws1Ad.kill = true;
+							return `Successfully curled away ad from ${params}`;
+						}else{
+							return `Please cd to pc3 to curl ads`;
+						}
+						break;
+					case 'pc4':
+						if(atLoc === 'pc4') {
+							workstation.ws1Ad.kill = true;
+							return `Successfully curled away ad from ${params}`;
+						}else{
+							return `Please cd to pc4 to curl ads`;
+						}
+						break;
+					default:
+						return `${params} does not exist`;
+				}
+			}
+		},
+		'pwd': {
+			'isStandalone': true,
+			'run': function() {
+				return printWorkingDir();
 			}
 		}
 	};
@@ -153,7 +250,7 @@
 	var cmd = document.createElement('input');
 	terminal.id = 'terminal';
 	arrow.id = 'arrow';
-	arrow.innerHTML = `<b><span style='color: magenta'>ADMIN</span> <span style='color: cyan'>>></span></b>`;
+	arrow.innerHTML = currDir(printWorkingDir());
 	cmd.onkeypress = enter;
 	cmd.type = 'text';
 	cmd.id = 'cmd';
