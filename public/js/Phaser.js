@@ -124,10 +124,11 @@
   function update() {
     endGame();
     killAd();
+    spawnAd();
     // time dependent actions go in wait();
-    wait(() => {
-     spawnAd(); //added above
-    }, timePerAd);
+  //   wait(() => {
+  //    spawnAd(); //added above
+  //   }, timePerAd);
   }
 
 })(window.Phaser);
