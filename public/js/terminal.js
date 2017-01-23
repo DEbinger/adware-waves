@@ -208,7 +208,7 @@
 						break;
 					case 'cp2':
 						if(atLoc === 'cp2') {
-							workstation.ws1Ad.kill = true;
+							workstation.ws2Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
 							return `Please cd to cp2 to curl ads`;
@@ -216,7 +216,7 @@
 						break;
 					case 'cp3':
 						if(atLoc === 'cp3') {
-							workstation.ws1Ad.kill = true;
+							workstation.ws3Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
 							return `Please cd to cp3 to curl ads`;
@@ -224,7 +224,7 @@
 						break;
 					case 'cp4':
 						if(atLoc === 'cp4') {
-							workstation.ws1Ad.kill = true;
+							workstation.ws4Ad.kill = true;
 							return `Successfully curled away ad from ${params}`;
 						}else{
 							return `Please cd to cp4 to curl ads`;

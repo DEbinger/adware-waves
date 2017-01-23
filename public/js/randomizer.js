@@ -1,4 +1,4 @@
-var level = 50; // leave it at 50 for now to make things go faster
+var level = 1; // leave it at 50 for now to make things go faster
 var pending = [];
 var numOfAd;
 var timePerAd;
