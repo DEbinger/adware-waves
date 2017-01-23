@@ -1,5 +1,4 @@
 * {
-	/*top: 0; left: 0;*/
 	padding: 0; margin: 0;
 	box-sizing: border-box;
 	font-family: 'Source Code Pro';
@@ -19,9 +18,6 @@ body {
   position: relative;
 }
 #container {
-  /*top: auto !important;
-  left: auto !important;
-  right: 0 !important;*/
   height: 400px;
   position: relative;
   overflow: hidden;
@@ -82,6 +78,7 @@ body {
 }
 
 #controlText {
+  margin-top: 20px;
 	margin-bottom: 10px;
 }
 
@@ -103,12 +100,15 @@ body {
 }
 
 #arrow {
+  width: 100px;
+  height: 30px;
 	color: black;
-	width: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: white;
+  padding-left: 20px;
+  padding-right: 5px;
 }
 
 #cmd {
@@ -125,24 +125,25 @@ body {
   white-space: nowrap;
 }
 #backlog{
-  height: 205px;
-  width: 563px;
+  height: 140px;
+  width: 400px;
   background-color: #9b9b9b;
   display: inline-block;
-  border: 24px solid #d8d8d8;
+  border: 5px solid #d8d8d8;
   overflow: hidden;
+  margin: 0;
 }
 #backlog > div {
   display: inline-block;
   text-align: center;
-  padding: 22px;
+  padding: 14px;
 }
 #next{
-  margin-left: 48px;
-  height: 205px;
-  width: 205px;
+  height: 140px;
+  width: 140px;
   background-color: #9b9b9b;
-  border: 24px solid #d8d8d8;
+  border: 5px solid #d8d8d8;
+  margin: 0;
   display: inline-block;
   overflow: hidden;
 }
@@ -150,4 +151,61 @@ body {
   display: block;
   margin: auto;
 }
+#container {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: #333;
+  width: 1000px;
+  margin: auto;
+}
 
+#radar {
+  display: block;
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+}
+
+.waves {
+  border-radius: 50%;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  position: absolute;
+  animation: wave 5s linear infinite;
+}
+@keyframes wave {
+  0% {
+    top: -25px;
+    right: -25px;
+    width: 1%;
+    height: 1%;
+  }
+  100% {
+    top: -500px;
+    right: -500px;
+    width: 1500px;
+    height: 1500px;
+  }
+}
+.waves:before {
+  content: ' ';
+  display: block;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  border-radius: 50%;
+  bottom: 250px;
+  left: 250px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.waves:after {
+  content: ' ';
+  display: block;
+  border: 5px solid rgba(184, 233, 134, 0.5);
+  border-radius: 50%;
+  bottom: 500px;
+  left: 500px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
