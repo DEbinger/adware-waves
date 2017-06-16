@@ -1,0 +1,23 @@
+{
+  "name": "adware-waves",
+  "version": "1.0.0",
+  "description": "W.A.A.V.E? (Why Are Ads Virtually Everywhere?)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEbinger/adware-waves.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DEbinger/adware-waves/issues"
+  },
+  "homepage": "https://github.com/DEbinger/adware-waves#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
